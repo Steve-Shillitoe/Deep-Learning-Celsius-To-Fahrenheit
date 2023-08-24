@@ -1,3 +1,10 @@
+"""
+In this module tensor flow is used to create a dense neural network with one layer that can 
+convert temperatures in Celsius to Fahrenheit. The model is trained using temperature measurements in
+celsius and the same temperature in Fahrenheit.
+"""
+
+
 import tensorflow as tf
 
 import numpy as np
@@ -17,7 +24,7 @@ layer_0 = tf.keras.layers.Dense(units=1, input_shape=[1])
 # Once layers are defined, they need to be assembled into a model.
 model = tf.keras.Sequential([layer_0])
 
-# Compile the model with mean_sqared_error and Adam optimizer
+# Compile the model with loss function mean_sqared_error and Adam optimizer
 model.compile(loss='mean_squared_error', optimizer=tf.keras.optimizers.Adam(0.1))
 
 #Train the model
@@ -29,7 +36,8 @@ history = model.fit(celsius_q, fahrenheit_a, epochs=500, verbose=False)
 print("Finished training the model")
 
 #Use the model to predict values
-print(model.predict([100.0]))
+print('When the Celsius value is 100, the model predicts the Fahrenheit value is {}'
+      .format(model.predict([100.0])))
 
 #Graphically display training statistics
 plt.xlabel('Epoch Number')
